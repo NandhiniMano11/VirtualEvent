@@ -21,10 +21,7 @@ const adminController = () => {
             let value = postData.email;
             const bodyValidationResult = regvalidate.schema.validate(value)
             messagehlp.required_error(bodyValidationResult, res);
-            console.log('====================================');
-            console.log(postData.emailId);
-            console.log('====================================');
-            sendInvitation(postData.emailId, async function (response) {
+           sendInvitation(postData.emailId, async function (response) {
                 if (response.status) {
                     return res
                         .status(httpStatus.OK)
@@ -39,10 +36,7 @@ const adminController = () => {
 
         }
         catch (err) {
-            console.log('====================================');
-            console.log(err);
-            console.log('====================================');
-            return res
+         return res
                 .status(httpStatus.INTERNAL_SERVER_ERROR)
                 .json({ status: false, error: err });
         }

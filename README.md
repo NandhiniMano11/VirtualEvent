@@ -14,4 +14,4 @@
      Browse http://localhost:4000/api-docs 
 
 ## For further details refer pdf file 
-/TASK/Virtual Event.pdf
+https://github.com/NandhiniMano11/VirtualEvent/blob/master/Virtual%20Event.pdf

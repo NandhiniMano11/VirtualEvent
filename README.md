@@ -13,3 +13,5 @@
      Open browser 
      Browse http://localhost:4000/api-docs 
 
+## For further details refer pdf file 
+/TASK/Virtual Event.pdf

@@ -1,0 +1,397 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "API",
+        "description": "API",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "host": "localhost:4000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "API",
+            "description": "API for Virtual event"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json",
+        "application/x-www-form-urlencoded",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/register": {
+            "post": {
+                "description": "User registration",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Reg"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "tags": [
+                    "Login"
+                ],
+                "x-auth-type": "Application & Application User",
+                "x-throttling-tier": "Unlimited"
+            }
+        },
+        "/api/login": {
+            "post": {
+                "description": "User login",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "tags": [
+                    "Login"
+                ],
+                "x-auth-type": "Application & Application User",
+                "x-throttling-tier": "Unlimited"
+            }
+        },
+        "/api/user/update": {
+            "post": {
+                "description": "Update user",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserUpdate"
+                        }
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "required": true,
+                        "example":"Bearer 5f2ac0ec3a23ff5277996d0c"
+                }
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "tags": [
+                    "User"
+                ],
+                "x-auth-type": "Application & Application User",
+                "x-throttling-tier": "Unlimited"
+            }
+        },
+        "/api/user/getuserbyId": {
+            "post": {
+                "description": "Delete user by id ",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Id"
+                        }
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "required": true,
+                        "example":"Bearer 5f2ac0ec3a23ff5277996d0c"
+                }
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "tags": [
+                    "User"
+                ],
+                "x-auth-type": "Application & Application User",
+                "x-throttling-tier": "Unlimited"
+            }
+        },
+        "/api/admin/deleteUser": {
+            "post": {
+                "description": "Delete user by id ",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Id"
+                        }
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "required": true,
+                        "example":"Bearer 5f2ac0ec3a23ff5277996d0c"
+                }
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "tags": [
+                    "Admin"
+                ],
+                "x-auth-type": "Application & Application User",
+                "x-throttling-tier": "Unlimited"
+            }
+        },
+        "/api/admin/invite": {
+            "post": {
+                "description": "Delete user by id ",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/deleteUser"
+                        }
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "required": true,
+                        "example":"Bearer 5f2ac0ec3a23ff5277996d0c"
+                }
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "tags": [
+                    "Admin"
+                ],
+                "x-auth-type": "Application & Application User",
+                "x-throttling-tier": "Unlimited"
+            }
+        },
+        "/api/admin/userList": {
+            "post": {
+                "description": "Get user list",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "required": true,
+                        "example":"Bearer 5f2ac0ec3a23ff5277996d0c"
+                }
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "403": {
+                        "description": "You do not have necessary permissions for the resource",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "tags": [
+                    "Admin"
+                ],
+                "x-auth-type": "Application & Application User",
+                "x-throttling-tier": "Unlimited"
+            }
+        }
+    },
+    "definitions": {
+        "Id": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "example": "5f2ac0ec3a23ff5277996d0c"
+                }
+            }
+        },
+        "Reg": {
+            "type": "object",
+            "properties": {
+                "emailId": {
+                    "type": "string",
+                    "example": "testkit62@gmail.com"
+                },
+                "role": {
+                    "type": "integer",
+                    "example": 2
+                },
+                "name": {
+                    "type": "string",
+                    "example": "nandhini"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "123456"
+                }
+            }
+        },
+        "UserUpdate": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "type": "string",
+                    "example": "5f2ac0ec3a23ff5277996d0c"
+                },
+                "emailId": {
+                    "type": "string",
+                    "example": "testkit62@gmail.com"
+                },
+                "role": {
+                    "type": "integer",
+                    "example": 2
+                },
+                "name": {
+                    "type": "string",
+                    "example": "nandhini"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "123456"
+                }
+            }
+        },
+        "Login": {
+            "type": "object",
+            "properties": {
+                "emailId": {
+                    "type": "string",
+                    "example": "testkit62@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "123456"
+                }
+            }
+        }
+    }
+}

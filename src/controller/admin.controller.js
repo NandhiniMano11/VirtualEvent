@@ -1,8 +1,10 @@
 const httpStatus = require("http-status");
-const sendOTPhlp = require('../helpers/sendotp');
+const sendInvitation = require('../helpers/sendInvitation');
+const regvalidate = require('../validations/reg_user');
 const idValidate = require('../validations/findbyId');
-const messagehlp = require('../helpers/messages.js');
 const user = require('../models/user');
+const messagehlp = require('../helpers/messages.js');
+
 const adminController = () => {
 	/**
 	 * Returns jwt token if valid username and password is provided
@@ -18,15 +20,18 @@ const adminController = () => {
             const postData = req.body;
             let value = postData.email;
             const bodyValidationResult = regvalidate.schema.validate(value)
-            helpers.required_error(bodyValidationResult, res);
-            sendOTPhlp(postData.emailId, async function (response) {
+            messagehlp.required_error(bodyValidationResult, res);
+            console.log('====================================');
+            console.log(postData.emailId);
+            console.log('====================================');
+            sendInvitation(postData.emailId, async function (response) {
                 if (response.status) {
                     return res
                         .status(httpStatus.OK)
                         .json({ status: true, message: response.message })
                 } else {
                     return res
-                        .status(httpStatus.BAD_REQUEST)
+                    .status(httpStatus.BAD_REQUEST)
                         .json({ status: false, error: response.message })
 
                 }
@@ -34,6 +39,9 @@ const adminController = () => {
 
         }
         catch (err) {
+            console.log('====================================');
+            console.log(err);
+            console.log('====================================');
             return res
                 .status(httpStatus.INTERNAL_SERVER_ERROR)
                 .json({ status: false, error: err });

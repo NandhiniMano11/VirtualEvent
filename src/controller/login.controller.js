@@ -29,21 +29,22 @@ const userController = () => {
             let value = { email: postData.emailId, password: postData.password };
             const bodyValidationResult = loginvalidate.schema.validate(value)
             messagehlp.required_error(bodyValidationResult, res);
-            await user.findOne({ emailId: postData.emailId, posword: postData.password })
+            await user.findOne({ emailId: postData.emailId, password: postData.password,otpverified:true })
                 .then((userData) => {
                     if (userData === null) {
                         return res
-                            .status(httpStatus.NOT_FOUND)
+                            .status(httpStatus.NO_CONTENT)
                             .json({ status: false, message: "Invalid email or password" })
                     } else {
+                        const accessToken = jwt.sign({ username: postData.emailId }, accessTokenSecret);
                         return res
-                            .status(httpStatus.Ok)
-                            .json({ status: true, message: "Success", responseContent: userData })
+                            .status(httpStatus.OK)
+                            .json({ status: true, message: "Success", responseContent: userData, token: accessToken })
                     }
                 }).catch((err) => {
                     return res
                         .status(httpStatus.INTERNAL_SERVER_ERROR)
-                        .json({ status: true, error: err })
+                        .json({ status: false, error: err })
                 })
         }
         catch (err) {
@@ -95,6 +96,7 @@ const userController = () => {
                             } else {
                                 await otptbl.updateOne({ userid: userData.id }, { status: false })
                                 const accessToken = jwt.sign({ username: postData.emailId }, accessTokenSecret);
+                                await user.update({emailId: postData.emailId},{otpverified:true})
                                 return res
                                     .status(httpStatus.OK)
                                     .json({ status: true, message: "Logged in successfully", token: accessToken })

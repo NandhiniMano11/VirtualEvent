@@ -26,13 +26,18 @@ const User = new Schema(
         role: {
             type: Number,
             required: true,
-            default:2
+            default: 2
+        },
+        otpverified: {
+            type: Boolean,
+            required: true, 
+            default: false
         },
         status: {
             type: Boolean,
             required: false,
             default: true
-        }       
+        }
     },
     { timestamps: true },
 )

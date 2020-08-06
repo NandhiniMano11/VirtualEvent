@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer');
-const httpStatus = require('http-status');
 const crypto = require('crypto');
 const auth = require('otplib/authenticator');
 auth.options = {
@@ -15,13 +14,12 @@ module.exports = function sendInvitation(emailId, callback) {
             pass: '12345!@kit'
         }
     });
-   const link = postData.link ? postData.link : '';
     var mailOptions = {
         from: 'testkit62@gmail.com',
         to: emailId,
         subject: 'INVITATION!',
-        text: link,
-        html: `<p>To join virtual event <a href="${link}">click here</a></p>`,
+        text: "http://www.google.com",
+        html: `<p>To join virtual event <a href="http://www.google.com">click here</a></p>`,
                
     };
 
